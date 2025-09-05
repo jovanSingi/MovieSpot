@@ -1,0 +1,42 @@
+<div class="filter-container">
+  <input type="text" [(ngModel)]="search" (input)="applyFilters()" placeholder="Pretraži filmove..."
+    class="search-box" />
+
+
+
+
+  <div>
+    <select [(ngModel)]="selectedGenre" (change)="applyFilters()">
+      <option value="">Žanrovi</option>
+      <option *ngFor="let genre of genres" [value]="genre.name">{{ genre.name }}</option>
+    </select>
+  </div>
+</div>
+
+<section class="movie-grid">
+
+  <!-- Skeleton kartice dok se učitavaju -->
+  @if (loading){
+  <div class="movie-card skeleton" *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]">
+    <div class="movie-card-img"></div>
+    <p class="movie-title"></p>
+    <p class="movie-start"></p>
+  </div>
+  }
+
+  <!-- Pravi filmovi -->
+  @if (!loading){
+  @for (movie of filteredMovies; track movie.movieId;) {
+  <div class="movie-card">
+    <a [routerLink]="['/movie/short/', movie.shortUrl]">
+      <div class="movie-card-img">
+        <img [src]="movie.poster" alt="">
+      </div>
+      <p class="movie-title">{{movie.originalTitle}}</p>
+      <p class="movie-start">Pocetak prikazivanja: {{movie.startDate}}</p>
+    </a>
+  </div>
+  }
+  }
+
+</section>

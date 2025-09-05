@@ -1,0 +1,83 @@
+<div class="users-grid">
+    <div class="user-card">
+        <h2 class="user-name">{{user.name}} {{user.lastName}}</h2>
+        <p><span><i class="fa-solid fa-phone"></i></span> {{user.number}}</p>
+        <p><span><i class="fa-solid fa-envelope"></i></span> {{user.email}}</p>
+        <p><span><i class="fa-solid fa-circle-user"></i></span> {{user.username}}</p>
+    </div>
+
+    <div class="user-card">
+        <h2 class="user-name">Change Password</h2>
+        <form class="password-form">
+            <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" name="currentPassword" placeholder="Enter current password" [(ngModel)]='currentPassword'>
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" name="newPassword" placeholder="Enter new password" [(ngModel)]="newPassword">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm New Password</label>
+                <input type="password" name="confirmPassword" placeholder="Confirm new password" [(ngModel)]="confirmPassword">
+            </div>
+
+            <button type="submit" class="btn-submit" (click)="doChangePassword()">Update Password</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="order-wrapper">
+    @if (orders.length == 0) {
+    <div>
+        <p>Name rezervisanih filmova!</p>
+    </div>
+    }
+
+    @for (order of orders; track order.pricePerItem) {
+    <div class="order-card">
+        <ul>
+            <li><span class="label">Movie Title:</span> <span class="value">{{order.selectedMovie.originalTitle}}</span>
+            </li>
+            <li><span class="label">Date:</span> <span class="value">{{utils.formatDate(order.selectedDate)}}</span>
+            </li>
+            <li><span class="label">Time:</span> <span class="value">{{order.selectedTime}}</span></li>
+            <li><span class="label">Number of Tickets:</span> <span class="value">{{order.numberOfTickets}}</span></li>
+            <li><span class="label">Price per Ticket:</span> <span class="value">{{order.pricePerItem}}</span></li>
+            <li><span class="label">Status:</span> <span class="value">{{order.status}}</span></li>
+            <li>
+                <span class="label">Rating:</span> <span class="value">
+
+                    <span (click)="changeRating(order, 'liked')">
+                        @if(order.rating == 'disliked' || order.rating == 'not-rated'){
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        }
+                        @if(order.rating == 'liked'){
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        }
+                    </span>
+
+                    <span (click)="changeRating(order, 'disliked')">
+                        @if(order.rating == 'liked' || order.rating == 'not-rated'){
+                        <i class="fa-regular fa-thumbs-down"></i>
+                        }
+                        @if(order.rating == 'disliked'){
+                        <i class="fa-solid fa-thumbs-down"></i>
+                        }
+                    </span>
+
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    }
+</div>

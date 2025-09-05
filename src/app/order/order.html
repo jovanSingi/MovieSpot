@@ -1,0 +1,88 @@
+<div class="header-image" [ngStyle]="{ 'background-image': 'url(' + currentMovie?.poster + ')' }">
+  <div class="blur">
+
+    <div class="header-content">
+      <img [src]="currentMovie?.poster" alt="">
+      <h1 [(ngModel)]="selectedMovie">{{currentMovie?.originalTitle}}</h1>
+    </div>
+
+  </div>
+</div>
+
+<div class="reservation-container">
+  <form>
+    <div class="block">
+      <label for="date">Izaberi datum:</label>
+      <input type="date" id="date" name="date" required [(ngModel)]="selectedDate">
+    </div>
+
+
+    <div class="block">
+      <label for="tickets">Broj karata:</label>
+      <select id="tickets" name="tickets" required [(ngModel)]="numberOfTickets">
+        <!-- <option value="">-- Izaberi --</option> -->
+        <option value="1">1 karta</option>
+        <option value="2">2 karte</option>
+        <option value="3">3 karte</option>
+        <option value="4">4 karte</option>
+        <option value="5">5 karata</option>
+      </select>
+    </div>
+
+
+
+    <div class="block">
+      <label for="time">Vreme projekcije:</label>
+      <select id="time" name="time" required [(ngModel)]="selectedTime">
+        <option value="18:00">18:00h</option>
+        <option value="20:00">20:00h</option>
+        <option value="22:00">22:00h</option>
+      </select>
+    </div>
+
+    <div class="block">
+      <label for="time">Vrsta karte:</label>
+      <select id="time" name="price" required [(ngModel)]="pricePerItem">
+        
+        <option value="300">300 RSD - STANDARD</option>
+        <option value="600">600 RSD - VIP</option>
+      </select>
+    </div>
+
+
+
+    <button type="submit" class="btn" (click)="doOrder()">Rezerviši</button>
+
+
+
+  </form>
+</div>
+
+<!-- <div class="form-card">
+    <h1>Rezerviši kartu 🎬</h1>
+    <p>film {{currentMovie?.originalTitle}}</p>
+    <form>
+      <label for="date">Izaberi datum:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="tickets">Broj karata:</label>
+      <select id="tickets" name="tickets" required>
+        <option value="">-- Izaberi --</option>
+        <option value="1">1 karta</option>
+        <option value="2">2 karte</option>
+        <option value="3">3 karte</option>
+        <option value="4">4 karte</option>
+        <option value="5">5 karata</option>
+      </select>
+
+      <label for="time">Vreme projekcije:</label>
+      <select id="time" name="time" required>
+        <option value="">-- Izaberi --</option>
+        <option value="18:00">18:00h</option>
+        <option value="20:00">20:00h</option>
+        <option value="22:00">22:00h</option>
+      </select>
+
+      <button type="submit" class="btn" (click)="doOrder()">Rezerviši</button>
+    </form>
+  </div> -->

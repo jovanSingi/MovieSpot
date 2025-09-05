@@ -1,0 +1,28 @@
+<section class="movie-wrapper" [ngStyle]="{ 'background-image': 'url(' + movie?.poster + ')' }">
+    <div class="mw-content">
+        <a class="mw-button" [routerLink]="'/order/' + movie?.movieId">REZERVISI</a>
+        <h1>{{movie?.originalTitle}}</h1>
+        <p>{{movie?.description}}</p>
+        <p class="bold">Glumci:
+            @for (ma of movie?.movieActors; track ma.movieActorId;) {
+            <span class="thin">
+                {{ ma.actor.name }},
+            </span>
+            }
+        </p>
+        <p class="bold">Zanrovi:
+            @for (genre of movie?.movieGenres; track genre.movieGenreId) {
+            <span class="thin">{{genre.genre.name}}, </span>
+            }
+        </p>
+        <p class="bold">Trajanje:
+            <span class="thin">{{movie?.runTime}} min</span>
+        </p>
+        <p class="bold">Reziser:
+            <span class="thin">{{movie?.director?.name}}</span>
+        </p>
+        <p class="bold">Datum izlaska:
+            <span class="thin">{{movie?.startDate}}</span>
+        </p>
+    </div>
+</section>
